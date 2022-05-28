@@ -10,27 +10,28 @@ public class UnityBlendShapeAnimation {
 	public string pathName = "";
 
 	public UnityBlendShapeAnimation( string hierarchyPath, SkinnedMeshRenderer observeSkinnedMeshRenderer ) {
-		pathName = hierarchyPath;
-		skinMeshObj = observeSkinnedMeshRenderer;
+		this.pathName = hierarchyPath;
+		this.skinMeshObj = observeSkinnedMeshRenderer;
 
 		//int blendShapeCount = skinMeshObj.getbl
-		Mesh blendShapeMesh = skinMeshObj.sharedMesh;
-		blendShapeCount = blendShapeMesh.blendShapeCount;
+		Mesh blendShapeMesh = this.skinMeshObj.sharedMesh;
+		this.blendShapeCount = blendShapeMesh.blendShapeCount;
 
-		blendShapeNames = new string[blendShapeCount];
-		curves = new UnityCurveContainer[blendShapeCount];
+		this.blendShapeNames = new string[blendShapeCount];
+		this.curves = new UnityCurveContainer[this.blendShapeCount];
 
 		// create curve objs and add names
-		for (int i = 0; i < blendShapeCount; i++) {
-			blendShapeNames [i] = blendShapeMesh.GetBlendShapeName (i);
-			curves [i] = new UnityCurveContainer ("blendShape." + blendShapeNames [i]);
+		for (int i = 0; i < this.blendShapeCount; i++) {
+			// public string GetBlendShapeName(int shapeIndex);
+			this.blendShapeNames [i] = blendShapeMesh.GetBlendShapeName (i);
+			this.curves [i] = new UnityCurveContainer ("blendShape." + this.blendShapeNames [i]);
 		}
 	}
 
 	public void AddFrame ( float time ) {
 					
-		for (int i = 0; i < blendShapeCount; i++)
-			curves [i].AddValue (time, skinMeshObj.GetBlendShapeWeight (i));
+		for (int i = 0; i < this.blendShapeCount; i++)
+			this.curves [i].AddValue (time, this.skinMeshObj.GetBlendShapeWeight (i));
 
 	}
 }

@@ -43,5 +43,11 @@ public class UnityObjectAnimation {
 		curves [8].AddValue (time, observeGameObject.localScale.y);
 		curves [9].AddValue (time, observeGameObject.localScale.z);
 
+		// public void AddValue( float animTime, float animValue )
+	{    //  public Keyframe(float time, float value, float inTangent, float outTangent);
+		//Keyframe key = new Keyframe (animTime, animValue, 0.0f, 0.0f);
+		//this.animCurve.AddKey (key);
+	}
+
 	}
 }
